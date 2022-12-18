@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends "base.html" %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block contend %}
+    <div class="row row-cols-1 row-cols-md-3 g-4" >
+    {% for value in w_l %}
+        <div class="col" style="margin-top: 40px">
+        <div class="card" style="width: 18rem; height: 22rem; border: 0; background: #CD8FFF; box-shadow:-3px 3px 5px #d9a6ff">
+                <img class="content">
+            {% with id=value.id|stringformat:"i" %}
+                <img class="card-img-top" src={% static "/stuff/img"|add:id|add:".jpg" %} alt="Card image cap">
+            {% endwith %}
+            <div class="card-body">
+                <h5 class="card-title">{{ value.position }}</h5>
+                <p class="card-text">{{ value.fio }}</p>
+                    <form class="d-flex">
+        {% if user.is_authenticated %}
+          <div class="btn-group dropstart" style="border-color: #6C005A; display: flex; justify-content: flex-end">
+               <a href="{% url 'askQuestion' %}" class="btn btn-primary" style="background-color: #dabdf1; border: 0; color: #000000; box-shadow:-3px 3px 5px #9c3bbe">Связаться</a>
+          </div>
+            {% else %}
+            <div class="btn-group dropstart" style="border: 0; background: darkorchid">
+              <div style="display: flex; justify-content: flex-end">
+                <a href="#" class="btn btn-primary" style="background-color: #dabdf1; color: #000000">Связаться</a>
+                </div>
+             </div>
+        {% endif %}
+      </form>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+    </div>
+    </div>
+{% endblock %}
+</body>
+</html>
+
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v10 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- LINEARICONS -->
+
+		{% load static %}
+		<!-- STYLE CSS -->
+        <link rel="stylesheet" href={% static "fonts/linearicons/style.css" %}>
+		<link rel="stylesheet" href={% static "css/style.css" %}>
+
+        <style>
+            .wrapper {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #ece0f6;
+            }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<img src = {% static "images/image-1.png"%} alt="" class="image-1">
+				<form method="POST" class="register-form" id="login-form">
+                    {% csrf_token %}
+                    <h3>Hello Again</h3>
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input type="text" class="form-control" placeholder="Username" id="your_name" name="your_name">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" placeholder="Password" id="your_pass" name="your_pass">
+					</div>
+					<button style="background-color:#9932CCFF">
+                        <span type="button" name="signin" id="signin" class="form-submit mx-auto" value="Log in">Log in</span>
+					</button>
+				</form>
+				<img src= {% static "images/image-2.png"%} alt="" class="image-2">
+			</div>
+		</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+	</body>
+</html>

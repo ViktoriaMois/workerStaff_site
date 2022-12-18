@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <title>Student</title>
+</head>
+
+<style>
+    .bg-light {
+    background: linear-gradient(to bottom, darkorchid, #ece0f6);
+}
+    container-fluid {
+    background: linear-gradient(to bottom, darkorchid, #ece0f6);
+}
+
+    .btn-outline-success{
+        color: white;
+        border-color: #6C005A;
+        background: linear-gradient(to bottom, #ece0f6, darkorchid);
+    }
+
+    .btn:active{
+        color: #6C005A;
+        border-color: white;
+        background: linear-gradient(to bottom, darkorchid, #ece0f6);
+    }
+
+    a:link{
+        color: #6C005A;
+        border-color: white;
+}
+    .dropdown-item:active{
+        background: white;
+    }
+
+</style>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color: white">Моё дело</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'index' %}" style="color: white">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}" style="color: white">Контакты</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+            Сотрудники
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for worker in w_l %}
+            <li><a class="dropdown-item" href="{% url "position" worker.position %}" style="color: darkorchid">{{ worker.position }}</a></li>
+              {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    <form class="d-flex">
+        {% if user.is_authenticated %}
+          <div class="btn-group dropstart" style="border-color: white; background: linear-gradient(to bottom, #c595e8, darkorchid)">
+              <button class="btn btn-outline-sucess dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">Профиль</button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="{% url 'password_change' %}">Поменять пароль</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="logout">Выход</a></li>
+              </ul>
+          </div>
+        {% else %}
+            <div class="btn-group dropstart">
+            <button class="btn btn-outline-success dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Вход/Регистрация</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item" href="signIn" style="color: darkorchid">Вход</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="signUp" style="color: darkorchid">Регистрация</a></li>
+          </ul>
+            </div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</nav>
+</header>
+<body style="background: #ece0f6">
+<div class="container">
+    {% block contend %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
